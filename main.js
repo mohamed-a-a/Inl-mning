@@ -3,7 +3,6 @@ fetch('https://blog-api-assignment.up.railway.app/posts')
     .then(res => res.json())
     .then(data => {
         for (i = 0; i < data.length; i++) {
-            console.log(data[i]);
 
             const blogDiv = document.createElement("div");
             const blogTitle = document.createElement("H1");
@@ -11,12 +10,24 @@ fetch('https://blog-api-assignment.up.railway.app/posts')
             const blogAuthor = document.createElement("p");
             const blogTags = document.createElement("p");
             const blogDate = document.createElement("i");
+            const blogLink = document.createElement("a");
+            const parag = document.createElement("p")
+
+
+
 
             const title = document.createTextNode(data[i].title);
             const content = document.createTextNode(`${data[i].content.slice(0, 100)}`);
             const author = document.createTextNode(`Author: ${data[i].author}`);
             const tags = document.createTextNode(`Tags: ${data[i].tags}`);
             const date = document.createTextNode(`Date: ${data[i].date.slice(0, 10)}`);
+            const readmoreText = document.createTextNode('Read more')
+
+            blogLink.setAttribute("href", `post.html?id=${data[i]._id}`);
+
+
+
+
 
 
 
@@ -26,15 +37,20 @@ fetch('https://blog-api-assignment.up.railway.app/posts')
             blogTags.appendChild(tags);
             blogDate.appendChild(date);
 
+            blogLink.appendChild(readmoreText)
+
             blogDiv.appendChild(blogTitle)
             blogDiv.appendChild(blogContent)
             blogDiv.appendChild(blogAuthor)
             blogDiv.appendChild(blogTags)
             blogDiv.appendChild(blogDate)
+            blogDiv.appendChild(parag)
+            blogDiv.appendChild(blogLink)
 
 
             const element = document.getElementById("div1");
             element.appendChild(blogDiv);
+
         }
     })
 
